@@ -1,4 +1,6 @@
 ---
+# https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-16-04
+#https://medium.com/dev-blogs/step-by-step-guide-to-install-jenkins-on-ubuntu-16-04-fba5f32ed402
 - name: "Ensure the jenkins apt repository key is installed in Ubuntu servers"
   apt_key: url=https://pkg.jenkins.io/debian-stable/jenkins.io.key state=present
   become: true

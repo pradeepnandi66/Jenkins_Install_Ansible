@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+  - name: "Install plugins"
+    jenkins_plugin:
+     name: testng-plugin
+     url_username: xxxxx
+     url_password: xxxxx
+     url: http://xxxxxxxx:8090

@@ -1,4 +1,9 @@
 ---
+- name: "Adding APT keys for Docker"
+  apt_key: url="{{ item }}" state=present
+  with_items:
+     - 'https://download.docker.com/linux/ubuntu/gpg'
+  become: true
 - name: "Adding Necessary repositories in Ubuntu servers"
   apt_repository: repo="{{ item }}" state=present
   with_items:

@@ -1,0 +1,5 @@
+---
+- include_tasks: install_jenkins_linux.yml
+  when: ansible_distribution == 'Linux' or ansible_distribution == 'CentOS'
+- include_tasks: install_jenkins_ubuntu.yml
+  when: "ansible_distribution == 'Ubuntu'"

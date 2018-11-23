@@ -1,0 +1,41 @@
+---
+- name: "Download jenkins.repo for Linux servers"
+  get_url:
+    url: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+    dest: /etc/yum.repos.d/jenkins.repo
+    force: True
+    mode: 0755
+
+  become: true
+
+- name: "Import jenkins key for Linux servers"
+  rpm_key:
+    state: present
+    key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+  become: true
+
+- name: "Install jenkins in Linux servers"
+  yum: pkg="{{ item }}" state=present
+  with_items:
+    - jenkins
+  become: true
+
+- name: "Taking Jenkins config file backup"
+  shell:
+      cmd: |
+        cp -pr /etc/sysconfig/jenkins /etc/sysconfig/jenkins_org_bkp
+        sed -i 's|^JENKINS_HOME|#JENKINS_HOME|' /etc/sysconfig/jenkins
+      warn: False
+  become: true
+- name: "Changing jenkins_home to custom path {{ jenkins_home }}"
+  blockinfile:
+      dest: /etc/sysconfig/jenkins
+      insertafter: '#JENKINS_HOME'
+      backup: yes
+      content: |
+       JENKINS_HOME="{{ jenkins_home }}"
+  become: true
+- name: "start Jenkins"
+  service: name="{{ item }}" state=started enabled=true
+  with_items:
+     - jenkins

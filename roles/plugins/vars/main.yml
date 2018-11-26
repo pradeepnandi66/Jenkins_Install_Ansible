@@ -1,0 +1,4 @@
+---
+JENKINS_HOME: /opt/jenkins
+PLUGIN_DIR: /opt/jenkins/plugins
+BACKUP_DIR: /opt/jenkins/backup_$$_`date "+%Y-%m-%d"`

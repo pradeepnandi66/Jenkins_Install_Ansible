@@ -18,5 +18,6 @@
     - tmux
     - dos2unix
   become: true
-  notify:
-     - start docker
+- name: "Start docker"
+  service: name=docker state=started enabled=true
+  become: true

@@ -7,7 +7,7 @@
   - name: "Install plugins"
     jenkins_plugin:
      name: "{{ item }}"
-     jenkins_home: /opt/jenkins
+     jenkins_home: "{{ JENKINS_HOME }}"
      url_username: admin
      url_password: admin
      url: http://192.168.1.4:8090

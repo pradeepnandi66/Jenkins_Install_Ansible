@@ -5,6 +5,7 @@
   - name: "Install plugins"
     jenkins_plugin:
      name: testng-plugin
+     jenkins_home: /opt/jenkins
      url_username: xxxxx
      url_password: xxxxx
      url: http://xxxxxxxx:8090

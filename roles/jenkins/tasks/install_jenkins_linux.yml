@@ -25,8 +25,8 @@
       cmd: |
         cp -pr /etc/sysconfig/jenkins /etc/sysconfig/jenkins_org_bkp
         sed -i 's|^JENKINS_HOME|#JENKINS_HOME|' /etc/sysconfig/jenkins
-        mkdir -p /opt/jenkins
-        chown -R jenkins:jenkins /opt/jenkins
+        mkdir -p {{ jenkins_home }}
+        chown -R jenkins:jenkins {{ jenkins_home }}
       warn: False
   become: true
 - name: "Changing jenkins_home to custom path {{ jenkins_home }}"

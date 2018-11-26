@@ -1,2 +1,5 @@
 ---
-jenkins_home: /opt/jenkins
+- include_tasks: jenkins_home_linux.yml
+  when: ansible_distribution == 'Linux' or ansible_distribution == 'CentOS'
+- include_tasks: jenkins_home_ubuntu.yml
+  when: "ansible_distribution == 'Ubuntu'"

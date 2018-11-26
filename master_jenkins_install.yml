@@ -2,5 +2,6 @@
 - hosts: localhost
   roles:
      - common
+     - { role: common, ansible_distribution == 'Linux' or ansible_distribution == 'CentOS' }
      - jenkins
      - plugins

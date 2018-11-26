@@ -12,5 +12,8 @@
 - name: "Ensure jenkins is installed in Ubuntu servers"
   apt: name=jenkins update_cache=yes state=present
   become: true
-  notify:
-     - start jenkins
+ 
+- name: "start jenkins"
+  service: name="{{ item }}" state=started enabled=true
+  with_items:
+    - jenkins

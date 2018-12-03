@@ -25,6 +25,7 @@
       cmd: |
         cp -pr /etc/sysconfig/jenkins /etc/sysconfig/jenkins_org_bkp
         sed -i 's|^JENKINS_HOME|#JENKINS_HOME|' /etc/sysconfig/jenkins
+        sed -i 's|^JENKINS_JAVA_OPTIONS|#JENKINS_JAVA_OPTIONS|' /etc/sysconfig/jenkins
         mkdir -p {{ jenkins_home }}
         chown -R jenkins:jenkins {{ jenkins_home }}
       warn: False
@@ -36,6 +37,7 @@
       backup: yes
       content: |
        JENKINS_HOME="{{ jenkins_home }}"
+       JENKINS_JAVA_OPTIONS="{{ jenkins_java_options }}"
   become: true
 - name: "start Jenkins"
   service: name="{{ item }}" state=started enabled=true

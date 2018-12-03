@@ -18,6 +18,7 @@
       cmd: |
         cp -pr /etc/default/jenkins /etc/default/jenkins_org_bkp
         sed -i 's|^JENKINS_HOME|#JENKINS_HOME|' /etc/default/jenkins
+        sed -i 's|^JAVA_ARGS|#JAVA_ARGS|' /etc/default/jenkins
         mkdir -p {{ jenkins_home }}
         chown -R jenkins:jenkins {{ jenkins_home }}
       warn: False
@@ -29,6 +30,7 @@
       backup: yes
       content: |
        JENKINS_HOME="{{ jenkins_home }}"
+       JAVA_ARGS="{{ java_args }}"
   become: true
  
 - name: "start jenkins"

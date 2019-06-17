@@ -2,4 +2,4 @@
 
 Usage:
 
-ansible-playbook master-install.yml
+ansible-playbook master_jenkins_install.yml
